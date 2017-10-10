@@ -12,7 +12,7 @@ In this exercise, we will make `CoffeeHouse` a top-level actor and implement som
     - Set the Akka logging level to `debug`.
     - Turn on logging of `unhandled` messages.
     - Use the `Slf4jLogger`.
-- Use the `run` command to boot the `CoffeeHouseApp` and verify: 
+- Use the `run` command to boot the `CoffeeHouseApp` and verify:
     - `CoffeeHouse Open` is logged to `coffee-house.log`.
 - Use the `test` command to verify the solution works as expected.
 - Use the `next` command to move to the next exercise.

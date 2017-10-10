@@ -38,7 +38,7 @@ public class CoffeeHouseApp implements Terminal {
 
         // @todo send "Brew Coffee" to coffeeHouse
         // @todo use ActorRef.noSender() as the sender
-        coffeeHouse.tell("Brew Coffee", ActorRef.noSender());
+        // coffeeHouse.tell("Brew Coffee", ActorRef.noSender());
     }
 
     public static void main(final String[] args) throws Exception {

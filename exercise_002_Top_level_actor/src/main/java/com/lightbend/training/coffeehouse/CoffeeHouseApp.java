@@ -30,7 +30,7 @@ public class CoffeeHouseApp implements Terminal {
     private final LoggingAdapter log;
 
     @SuppressWarnings("unused")
-    private final ActorRef coffeeHouse;
+    // private final ActorRef coffeeHouse;
 
     public CoffeeHouseApp(final ActorSystem system) {
         this.system = system;
