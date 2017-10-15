@@ -65,18 +65,19 @@ public class CoffeeHouseApp implements Terminal {
         });
     }
 
+    // @todo implement anonymous actor
     private static Props printerProps(ActorRef coffeeHouse) {
-        // @todo implement anonymous actor
-        return Props.create(AbstractLoggingActor.class, () -> new AbstractLoggingActor() {
-            @Override
-            public Receive createReceive() {
-                return receiveBuilder().matchAny(o -> log().info(o.toString())).build();
-            }
+        // return Props.create(AbstractLoggingActor.class, () -> new AbstractLoggingActor() {
+        //     @Override
+        //     public Receive createReceive() {
+        //         return receiveBuilder().matchAny(o -> log().info(o.toString())).build();
+        //     }
 
-            {
-                coffeeHouse.tell("Brew Coffee", getSelf());
-            }
-        });
+        //     {
+        //         coffeeHouse.tell("Brew Coffee", getSelf());
+        //     }
+        // });
+        return null;
     }
 
     private void run() throws IOException, TimeoutException, InterruptedException {

@@ -13,12 +13,19 @@ public class CoffeeHouse extends AbstractLoggingActor {
         log().debug("CoffeeHouse Open");
     }
 
-    // @todo Instead of logging "Coffee Brewing", respond to the getSender()
+    // @todo remove this createReceive
     @Override
     public Receive createReceive() {
         return receiveBuilder().
-                matchAny(o -> getSender().tell("Coffee is really really Brewing and it is hot", getSelf())).build();
+                matchAny(o -> log().info("Coffee Brewing")).build();
     }
+
+    // @todo Instead of logging "Coffee Brewing", respond to the getSender()
+    // @Override
+    // public Receive createReceive() 
+    //    return receiveBuilder().
+    //        matchAny(o -> getSender().tell("Coffee is really really Brewing and it is hot", getSelf())).build();
+    // }
 
     public static Props props() {
         return Props.create(CoffeeHouse.class, CoffeeHouse::new);
