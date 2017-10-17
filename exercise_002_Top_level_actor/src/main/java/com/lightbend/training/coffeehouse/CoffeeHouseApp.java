@@ -30,11 +30,18 @@ public class CoffeeHouseApp implements Terminal {
     private final LoggingAdapter log;
 
     @SuppressWarnings("unused")
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo create private final ActorRef for coffeehouse
     // private final ActorRef coffeeHouse;
 
     public CoffeeHouseApp(final ActorSystem system) {
         this.system = system;
         log = Logging.getLogger(system, getClass().getName());
+        //===========================================================================
+        // ANSWER
+        //===========================================================================
         // @todo assign cofeeHouse instance via factory method.
         // coffeeHouse = createCoffeeHouse();
     }
@@ -73,6 +80,9 @@ public class CoffeeHouseApp implements Terminal {
         Await.ready(system.whenTerminated(), Duration.Inf());
     }
 
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
     // @todo createCoffeeHouse factory method
     // protected ActorRef createCoffeeHouse() {
     //     return system.actorOf(CoffeeHouse.props(), "coffee-house");

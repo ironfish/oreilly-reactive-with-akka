@@ -36,6 +36,9 @@ public class CoffeeHouseApp implements Terminal {
         log = Logging.getLogger(system, getClass().getName());
         coffeeHouse = createCoffeeHouse();
 
+        //===========================================================================
+        // ANSWER
+        //===========================================================================\
         // @todo send "Brew Coffee" to coffeeHouse
         // @todo use ActorRef.noSender() as the sender
         // coffeeHouse.tell("Brew Coffee", ActorRef.noSender());

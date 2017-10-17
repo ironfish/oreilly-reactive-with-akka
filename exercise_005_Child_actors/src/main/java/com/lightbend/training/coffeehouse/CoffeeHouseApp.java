@@ -95,6 +95,9 @@ public class CoffeeHouseApp implements Terminal {
         }
     }
 
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
     // @todo implement createGuest
     protected void createGuest(int count, Coffee coffee, int maxCoffeeCount) {
         // for (int i = 0; i < count; i++) {

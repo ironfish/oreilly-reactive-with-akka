@@ -37,7 +37,12 @@ public class CoffeeHouseApp implements Terminal {
         this.system = system;
         log = Logging.getLogger(system, getClass().getName());
         coffeeHouse = createCoffeeHouse();
-        system.actorOf(printerProps(coffeeHouse));
+
+        //===========================================================================
+        // ANSWER
+        //===========================================================================
+        // @todo implement access to anonymous actor
+        // system.actorOf(printerProps(coffeeHouse));
     }
 
     public static void main(final String[] args) throws Exception {
@@ -65,8 +70,11 @@ public class CoffeeHouseApp implements Terminal {
         });
     }
 
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
     // @todo implement anonymous actor
-    private static Props printerProps(ActorRef coffeeHouse) {
+    // private static Props printerProps(ActorRef coffeeHouse) {
         // return Props.create(AbstractLoggingActor.class, () -> new AbstractLoggingActor() {
         //     @Override
         //     public Receive createReceive() {
@@ -77,8 +85,7 @@ public class CoffeeHouseApp implements Terminal {
         //         coffeeHouse.tell("Brew Coffee", getSelf());
         //     }
         // });
-        return null;
-    }
+    // }
 
     private void run() throws IOException, TimeoutException, InterruptedException {
         log.warning(

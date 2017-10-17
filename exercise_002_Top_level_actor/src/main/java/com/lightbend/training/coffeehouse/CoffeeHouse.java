@@ -15,13 +15,28 @@ public class CoffeeHouse extends AbstractLoggingActor {
                 matchAny(o -> log().info("Coffee Brewing")).build();
     }
 
-    // @todo log @ debug "CoffeeHouse Open"
     public CoffeeHouse() {
-        // log().debug("CoffeeHouse Open");
     }
-
-    // @todo implement props factory method
-    // public static Props props() {
-    //     return Props.create(CoffeeHouse.class, CoffeeHouse::new);
-    // }
 }
+
+//===========================================================================
+// ANSWER
+//===========================================================================
+// public class CoffeeHouse extends AbstractLoggingActor {
+
+//     @Override
+//     public Receive createReceive() {
+//         return receiveBuilder().
+//                 matchAny(o -> log().info("Coffee Brewing")).build();
+//     }
+
+//     // @todo log @ debug "CoffeeHouse Open"
+//     public CoffeeHouse() {
+//         log().debug("CoffeeHouse Open");
+//     }
+
+//     @todo implement props factory method
+//     public static Props props() {
+//         return Props.create(CoffeeHouse.class, CoffeeHouse::new);
+//     }
+// }

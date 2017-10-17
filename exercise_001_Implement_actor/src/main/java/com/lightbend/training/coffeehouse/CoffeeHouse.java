@@ -6,17 +6,25 @@ package com.lightbend.training.coffeehouse;
 
 import akka.actor.AbstractLoggingActor;
 
-// @todo extend with AbstractLoggingActor
-//public class CoffeeHouse extends AbstractLoggingActor {
 public class CoffeeHouse {
 
     public CoffeeHouse() {
     }
-
-    // @todo implement createReceive and use receiveBuilder
-    // @Override
-    // public Receive createReceive() {
-    //     return receiveBuilder().
-    //             matchAny(o -> log().info("Coffee Brewing")).build();
-    // }
 }
+
+//===========================================================================
+// ANSWER
+//===========================================================================
+// @todo extend with AbstractLoggingActor
+// public class CoffeeHouse extends AbstractLoggingActor {
+
+//     public CoffeeHouse() {
+//     }
+
+//     @todo implement createReceive and use receiveBuilder
+//     @Override
+//     public Receive createReceive() {
+//         return receiveBuilder().
+//                 matchAny(o -> log().info("Coffee Brewing")).build();
+//     }
+// }
