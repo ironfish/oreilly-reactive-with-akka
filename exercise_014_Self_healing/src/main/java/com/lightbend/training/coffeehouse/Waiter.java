@@ -36,7 +36,11 @@ public class Waiter extends AbstractLoggingActor {
                 match(Barista.CoffeePrepared.class, coffeePrepared ->
                         coffeePrepared.guest.tell(new CoffeeServed(coffeePrepared.coffee), self())
                 ).
-                // todo Providing the `Waiter` actors supervisor with all the necessary information.
+               
+                //===========================================================================
+                // ANSWER
+                //===========================================================================
+                // @todo Providing the `Waiter` actors supervisor with all the necessary information.
                 match(Complaint.class, complaint -> complaintCount == this.maxComplaintCount, complaint -> {
                     throw new FrustratedException(complaint.coffee, sender());
                 }).

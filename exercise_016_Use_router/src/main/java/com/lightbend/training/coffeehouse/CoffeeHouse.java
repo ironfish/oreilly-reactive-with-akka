@@ -110,7 +110,10 @@ public class CoffeeHouse extends AbstractLoggingActor {
         log().debug("Removed guest {} from bookkeeper", guest);
     }
 
-    // todo Use an externally configured `round-robin` pool router.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Use an externally configured `round-robin` pool router.
     protected ActorRef createBarista() {
         return context().actorOf(FromConfig.getInstance().props(
                 Barista.props(baristaPrepareCoffeeDuration, baristaAccuracy)), "barista");
