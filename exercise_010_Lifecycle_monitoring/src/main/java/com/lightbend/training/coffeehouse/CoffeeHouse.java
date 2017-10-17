@@ -60,8 +60,14 @@ public class CoffeeHouse extends AbstractLoggingActor {
                     log().info("Sorry, {}, but you have reached your limit.", approveCoffee.guest.path().name());
                     context().stop(approveCoffee.guest);
                 }).
+                //===========================================================================
+                // ANSWER
+                //===========================================================================
                 // todo When the `Guest` terminates, remove the `Guest` from caffeineLimit bookkeeping.
                 match(Terminated.class, terminated -> {
+                    //===========================================================================
+                    // ANSWER
+                    //===========================================================================
                     // todo Log "Thanks {guest}, for being our guest!" at `info`.
                     log().info("Thanks, {}, for being our guest!", terminated.getActor());
                     removeGuestFromBookkeeper(terminated.getActor());

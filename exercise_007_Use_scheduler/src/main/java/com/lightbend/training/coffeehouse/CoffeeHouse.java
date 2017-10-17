@@ -15,12 +15,15 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class CoffeeHouse extends AbstractLoggingActor {
 
-    // todo For `finishCoffeeDuration`, use a configuration value with key `coffee-house.guest.finish-coffee-duration`.
-    // todo To get the configuration value, use the `getDuration` method on `context().system().settings().config()`.
-    private final FiniteDuration guestFinishCoffeeDuration =
-            Duration.create(
-                    context().system().settings().config().getDuration(
-                            "coffee-house.guest.finish-coffee-duration", MILLISECONDS), MILLISECONDS);
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo For `finishCoffeeDuration`, use a configuration value with key `coffee-house.guest.finish-coffee-duration`.
+    // @todo To get the configuration value, use the `getDuration` method on `context().system().settings().config()`.
+    // private final FiniteDuration guestFinishCoffeeDuration =
+    //         Duration.create(
+    //                 context().system().settings().config().getDuration(
+    //                         "coffee-house.guest.finish-coffee-duration", MILLISECONDS), MILLISECONDS);
 
     private final ActorRef waiter =
             context().actorOf(Waiter.props(), "waiter");
@@ -41,9 +44,13 @@ public class CoffeeHouse extends AbstractLoggingActor {
         return Props.create(CoffeeHouse.class, CoffeeHouse::new);
     }
 
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
     // todo Adjust the code for creating a new `Guest`.
     protected void createGuest(Coffee favoriteCoffee) {
-        context().actorOf(Guest.props(waiter, favoriteCoffee, guestFinishCoffeeDuration));
+        context().actorOf(Guest.props(waiter, favoriteCoffee));
+        // context().actorOf(Guest.props(waiter, favoriteCoffee, guestFinishCoffeeDuration));
     }
 
     public static final class CreateGuest {

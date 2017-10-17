@@ -43,7 +43,10 @@ public class Guest extends AbstractLoggingActor {
         return Props.create(Guest.class, () -> new Guest(waiter, favoriteCoffee, finishCoffeeDuration));
     }
 
-    // todo Override the `postStop` hook to log `Goodbye!` at `info`.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Override the `postStop` hook to log `Goodbye!` at `info`.
     @Override
     public void postStop() {
         log().info("Goodbye!");

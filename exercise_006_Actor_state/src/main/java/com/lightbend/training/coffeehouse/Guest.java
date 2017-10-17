@@ -59,10 +59,6 @@ public class Guest extends AbstractLoggingActor {
 //                 ).build();
 //     }
 
-//     public static Props props() {
-//         return Props.create(Guest.class, Guest::new);
-//     }
-
 //     @todo Add waiter ActorRef to props and pass through to constuctor
 //     public static Props props(final ActorRef waiter, final Coffee favoriteCoffee) {
 //         return Props.create(Guest.class, () -> new Guest(waiter, favoriteCoffee));

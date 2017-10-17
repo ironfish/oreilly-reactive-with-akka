@@ -14,7 +14,10 @@ public class Waiter extends AbstractLoggingActor {
 
     private ActorRef coffeeHouse;
 
-    // todo Rename the `barista` parameter to `coffeeHouse`.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Rename the `barista` parameter to `coffeeHouse`.
     public Waiter(ActorRef coffeeHouse) {
         this.coffeeHouse = coffeeHouse;
     }
@@ -23,7 +26,10 @@ public class Waiter extends AbstractLoggingActor {
     public Receive createReceive() {
         return receiveBuilder().
                 match(ServeCoffee.class, serveCoffee ->
-                        // todo Change the behavior to reflect using `CoffeeHouse`.
+                        //===========================================================================
+                        // ANSWER
+                        //===========================================================================
+                        // @todo Change the behavior to reflect using `CoffeeHouse`.
                         this.coffeeHouse.tell(new CoffeeHouse.ApproveCoffee(serveCoffee.coffee, sender()), self())
                 ).
                 match(Barista.CoffeePrepared.class, coffeePrepared ->

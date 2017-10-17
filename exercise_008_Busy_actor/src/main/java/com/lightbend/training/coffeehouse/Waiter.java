@@ -12,7 +12,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Waiter extends AbstractLoggingActor {
 
-    // todo Add a reference to the `Barista` actor.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Add a reference to the `Barista` actor.
     private ActorRef barista;
 
     public Waiter(ActorRef barista) {
@@ -22,7 +25,10 @@ public class Waiter extends AbstractLoggingActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder().
-                // todo Instead of serving coffee immediately, defer to the `Barista` for preparation.
+                //===========================================================================
+                // ANSWER
+                //===========================================================================
+                // @todo Instead of serving coffee immediately, defer to the `Barista` for preparation.
                 match(ServeCoffee.class, serveCoffee ->
                         this.barista.tell(new Barista.PrepareCoffee(serveCoffee.coffee, sender()), self())
                 ).

@@ -87,7 +87,10 @@ public class CoffeeHouseApp implements Terminal {
     }
 
     protected ActorRef createCoffeeHouse() {
-        // todo Get the caffeineLimit from configuration property `coffee-house.caffeine-limit`.
+        //===========================================================================
+        // ANSWER
+        //===========================================================================
+        // @todo Get the caffeineLimit from configuration property `coffee-house.caffeine-limit`.
         final int caffieneLimit = system.settings().config().getInt("coffee-house.caffeine-limit");
         return system.actorOf(CoffeeHouse.props(caffieneLimit), "coffee-house");
     }

@@ -13,7 +13,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Barista extends AbstractLoggingActor {
 
-    // todo Add a `prepareCoffeeDuration` parameter of type `FiniteDuration`.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Add a `prepareCoffeeDuration` parameter of type `FiniteDuration`.
     private final FiniteDuration prepareCoffeeDuration;
 
     public Barista(FiniteDuration prepareCoffeeDuration) {
@@ -24,19 +27,31 @@ public class Barista extends AbstractLoggingActor {
     public Receive createReceive() {
         return receiveBuilder().
                 match(PrepareCoffee.class, prepareCoffee -> {
-                    // todo Busily prepare coffee for `prepareCoffeeDuration`.
+                    //===========================================================================
+                    // ANSWER
+                    //===========================================================================
+                    // @todo Busily prepare coffee for `prepareCoffeeDuration`.
                     Thread.sleep(this.prepareCoffeeDuration.toMillis()); // Attention: Never block a thread in "real" code!
-                    // todo Respond with `CoffeePrepared(coffee, guest)` to the sender.
+                    //===========================================================================
+                    // ANSWER
+                    //===========================================================================
+                    // @todo Respond with `CoffeePrepared(coffee, guest)` to the sender.
                     sender().tell(new CoffeePrepared(prepareCoffee.coffee, prepareCoffee.guest), self());
                 }).build();
     }
 
-    // todo Define a `Props` factory.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Define a `Props` factory.
     public static Props props(FiniteDuration prepareCoffeeDuration) {
         return Props.create(Barista.class, () -> new Barista(prepareCoffeeDuration));
     }
 
-    // todo Create a `PrepareCoffee` message with parameters of `coffee` type `Coffee` and `guest` type `ActorRef`.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Create a `PrepareCoffee` message with parameters of `coffee` type `Coffee` and `guest` type `ActorRef`.
     public static final class PrepareCoffee {
 
         public final Coffee coffee;

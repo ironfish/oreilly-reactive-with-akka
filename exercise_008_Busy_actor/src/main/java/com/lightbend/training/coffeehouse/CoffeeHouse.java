@@ -15,7 +15,10 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class CoffeeHouse extends AbstractLoggingActor {
 
-    // todo For `prepareCoffeeDuration`, use a configuration value with key `coffee-house.barista.prepare-coffee-duration`.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo For `prepareCoffeeDuration`, use a configuration value with key `coffee-house.barista.prepare-coffee-duration`.
     private final FiniteDuration baristaPrepareCoffeeDuration =
             Duration.create(
                     context().system().settings().config().getDuration(
@@ -26,7 +29,10 @@ public class CoffeeHouse extends AbstractLoggingActor {
                     context().system().settings().config().getDuration(
                             "coffee-house.guest.finish-coffee-duration", MILLISECONDS), MILLISECONDS);
 
-    // todo Create a `private barista` actor with name `barista`.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Create a `private barista` actor with name `barista`.
     private final ActorRef barista =
             createBarista();
 
@@ -49,7 +55,10 @@ public class CoffeeHouse extends AbstractLoggingActor {
         return Props.create(CoffeeHouse.class, CoffeeHouse::new);
     }
 
-    // todo Use a `createBarista` factory method.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Use a `createBarista` factory method.
     protected ActorRef createBarista() {
         return context().actorOf(Barista.props(baristaPrepareCoffeeDuration), "barista");
     }
