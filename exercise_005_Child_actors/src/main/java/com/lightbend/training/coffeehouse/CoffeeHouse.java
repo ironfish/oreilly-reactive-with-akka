@@ -15,8 +15,10 @@ public class CoffeeHouse extends AbstractLoggingActor {
 
     @Override
     public Receive createReceive() {
+        return receiveBuilder().
+            matchAny(o -> getSender().tell("Coffee is really really Brewing and it is hot", getSelf())).build();
         // @todo Upon receiving the `CreateGuest` message call the factory method.
-        return receiveBuilder().match(CreateGuest.class, createGuest -> createGuest()).build();
+        // return receiveBuilder().match(CreateGuest.class, createGuest -> createGuest()).build();
     }
 
     public static Props props() {
@@ -24,17 +26,17 @@ public class CoffeeHouse extends AbstractLoggingActor {
     }
 
     // @todo Use a `createGuest` factory method that creates a child `Guest` actor without `name`.
-    protected void createGuest() {
-        context().actorOf(Guest.props());
-    }
+    // protected void createGuest() {
+    //     context().actorOf(Guest.props());
+    // }
 
     // @todo Add `CreateGuest` message. Make it a singleton object.
-    public static final class CreateGuest {
+    // public static final class CreateGuest {
 
-        public static final CreateGuest Instance =
-                new CreateGuest();
+    //     public static final CreateGuest Instance =
+    //             new CreateGuest();
 
-        private CreateGuest() {
-        }
-    }
+    //     private CreateGuest() {
+    //     }
+    // }
 }
