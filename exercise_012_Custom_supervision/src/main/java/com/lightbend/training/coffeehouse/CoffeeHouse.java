@@ -37,6 +37,9 @@ public class CoffeeHouse extends AbstractLoggingActor {
 
     private final int caffeineLimit;
 
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
     // todo Look up the default supervisor strategy in the `Akka` documentation.
     // todo Caffeinated `Guest` actors should not restart.
     // todo Apply a custom supervision strategy that stops them instead.

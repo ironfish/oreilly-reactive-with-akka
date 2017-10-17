@@ -110,6 +110,9 @@ public class CoffeeHouseApp implements Terminal {
         }
     }
 
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
     // todo So that a `Guest` can be created with a `caffeineLimit`.
     protected void createGuest(int count, Coffee coffee, int maxCoffeeCount) {
         for (int i = 0; i < count; i++) {

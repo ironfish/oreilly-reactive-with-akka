@@ -37,9 +37,15 @@ public class Guest extends AbstractLoggingActor {
                     log().info("Enjoying my {} yummy {}!", coffeeCount, coffeeServed.coffee);
                     scheduleCoffeeFinished();
                 }).
-                // todo On receiving the wrong `Coffee`, send a `Complaint` to the `Waiter`.
+                //===========================================================================
+                // ANSWER
+                //===========================================================================
+                // @todo On receiving the wrong `Coffee`, send a `Complaint` to the `Waiter`.
                 match(Waiter.CoffeeServed.class, coffeeServed -> {
-                    // todo Log at `info` when receiving the wrong `Coffee` (ie. `Expected a {}, but got a {}!`)
+                    //===========================================================================
+                    // ANSWER
+                    //===========================================================================
+                    // @todo Log at `info` when receiving the wrong `Coffee` (ie. `Expected a {}, but got a {}!`)
                     log().info("Expected a {}, but got a {}!", favoriteCoffee, coffeeServed.coffee);
                     waiter.tell(new Waiter.Complaint(favoriteCoffee), self());
                 }).

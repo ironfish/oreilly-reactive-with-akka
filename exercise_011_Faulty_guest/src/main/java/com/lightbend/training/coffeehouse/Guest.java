@@ -17,7 +17,10 @@ public class Guest extends AbstractLoggingActor {
 
     private final FiniteDuration finishCoffeeDuration;
 
-    // todo Add a `caffeineLimit` parameter.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Add a `caffeineLimit` parameter.
     private final int caffeineLimit;
 
     private int coffeeCount = 0;
@@ -67,7 +70,10 @@ public class Guest extends AbstractLoggingActor {
                 CoffeeFinished.Instance, context().dispatcher(), self());
     }
 
-    // todo Create new exception called `CaffeineException` by extending `IllegalStateException`.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Create new exception called `CaffeineException` by extending `IllegalStateException`.
     public static final class CaffeineException extends IllegalStateException {
         static final long serialVersionUID = 1;
 

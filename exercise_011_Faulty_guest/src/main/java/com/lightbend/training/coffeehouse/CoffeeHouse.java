@@ -107,6 +107,10 @@ public class CoffeeHouse extends AbstractLoggingActor {
 
         public final int caffeineLimit;
 
+        //===========================================================================
+        // ANSWER
+        //===========================================================================
+        // @todo add caffeineLimit
         public CreateGuest(final Coffee favoriteCoffee, final int caffeineLimit) {
             checkNotNull(favoriteCoffee, "Favorite coffee cannot be null");
             this.favoriteCoffee = favoriteCoffee;
@@ -114,6 +118,10 @@ public class CoffeeHouse extends AbstractLoggingActor {
         }
 
         @Override
+        //===========================================================================
+        // ANSWER
+        //===========================================================================
+        // @todo add caffeineLimit
         public String toString() {
             return "CreateGuest{"
                     + "favoriteCoffee=" + favoriteCoffee + ", "
@@ -121,6 +129,10 @@ public class CoffeeHouse extends AbstractLoggingActor {
         }
 
         @Override
+        //===========================================================================
+        // ANSWER
+        //===========================================================================
+        // @todo add caffeineLimit
         public boolean equals(Object o) {
             if (o == this) return true;
             if (o instanceof CreateGuest) {
@@ -132,6 +144,10 @@ public class CoffeeHouse extends AbstractLoggingActor {
         }
 
         @Override
+        //===========================================================================
+        // ANSWER
+        //===========================================================================
+        // @todo add caffeineLimit
         public int hashCode() {
             int h = 1;
             h *= 1000003;

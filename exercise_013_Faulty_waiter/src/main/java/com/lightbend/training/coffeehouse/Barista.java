@@ -17,7 +17,10 @@ public class Barista extends AbstractLoggingActor {
 
     private final FiniteDuration prepareCoffeeDuration;
 
-    // todo Add an `accuracy` parameter of type `Int` expressing a percentage.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Add an `accuracy` parameter of type `Int` expressing a percentage.
     private final int accuracy;
 
     public Barista(FiniteDuration prepareCoffeeDuration, int accuracy) {
@@ -39,10 +42,13 @@ public class Barista extends AbstractLoggingActor {
     }
 
     private Coffee pickCoffee(Coffee coffee) {
-        // todo Get a random `Int` value less than 100.
-        // todo If the random `Int` is less than `accuracy`
-        // todo Prepare the correct `Coffee`.
-        // todo Otherwise prepare a wrong one.
+        //===========================================================================
+        // ANSWER
+        //===========================================================================
+        // @todo Get a random `Int` value less than 100.
+        // @todo If the random `Int` is less than `accuracy`
+        // @todo Prepare the correct `Coffee`.
+        // @todo Otherwise prepare a wrong one.
         return new Random().nextInt(100) < accuracy ? coffee : Coffee.orderOther(coffee);
     }
 

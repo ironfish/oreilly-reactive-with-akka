@@ -35,25 +35,37 @@ public class Waiter extends AbstractLoggingActor {
                 match(Barista.CoffeePrepared.class, coffeePrepared ->
                         coffeePrepared.guest.tell(new CoffeeServed(coffeePrepared.coffee), self())
                 ).
-                // todo If more `Complaint` messages arrive than the `maxComplaintCount`:
+                //===========================================================================
+                // ANSWER
+                //===========================================================================
+                // @todo If more `Complaint` messages arrive than the `maxComplaintCount`:
                 match(Complaint.class, complaint -> complaintCount == this.maxComplaintCount, complaint -> {
                     // todo Throw a `FrustratedException`
                     throw new FrustratedException();
                 }).
-                // todo Keep track of the number of `Complaint` messages received.
+                //===========================================================================
+                // ANSWER
+                //===========================================================================
+                // @todo Keep track of the number of `Complaint` messages received.
                 match(Complaint.class, complaint -> {
                     complaintCount++;
-                    // todo Else send `PrepareCoffee` to the `Barista`.
+                    // @todo Else send `PrepareCoffee` to the `Barista`.
                     this.barista.tell(new Barista.PrepareCoffee(complaint.coffee, sender()), self());
                 }).build();
     }
 
-    // todo Add a `barista` parameter of type `ActorRef` and a `maxComplaintCount` parameter of type `Int`.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Add a `barista` parameter of type `ActorRef` and a `maxComplaintCount` parameter of type `Int`.
     public static Props props(ActorRef coffeeHouse, ActorRef barista, int maxComplaintCount) {
         return Props.create(Waiter.class, () -> new Waiter(coffeeHouse, barista, maxComplaintCount));
     }
 
-    // todo Add a `FrustratedException` type extending `IllegalStateException`.
+    //===========================================================================
+    // ANSWER
+    //===========================================================================
+    // @todo Add a `FrustratedException` type extending `IllegalStateException`.
     public static final class FrustratedException extends IllegalStateException {
         static final long serialVersionUID = 1;
 
