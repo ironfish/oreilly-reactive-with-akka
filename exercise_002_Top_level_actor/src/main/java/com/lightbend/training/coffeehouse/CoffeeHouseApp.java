@@ -29,21 +29,29 @@ public class CoffeeHouseApp implements Terminal {
 
     private final LoggingAdapter log;
 
-    @SuppressWarnings("unused")
-    //===========================================================================
-    // ANSWER
-    //===========================================================================
-    // @todo create private final ActorRef for coffeehouse
-    // private final ActorRef coffeeHouse;
+//    @SuppressWarnings("unused")
+//    //===========================================================================
+//    // ANSWER
+//    //===========================================================================
+//    // @todo create private final ActorRef for coffeehouse
+//    private final ActorRef coffeeHouse;
+//
+//    public CoffeeHouseApp(final ActorSystem system) {
+//        this.system = system;
+//        log = Logging.getLogger(system, getClass().getName());
+//        // @todo assign cofeeHouse instance via factory method.
+//        coffeeHouse = createCoffeeHouse();
+//    }
+//
+//    // @todo createCoffeeHouse factory method
+//    protected ActorRef createCoffeeHouse() {
+//        return system.actorOf(CoffeeHouse.props(), "coffee-house");
+//    }
+
 
     public CoffeeHouseApp(final ActorSystem system) {
         this.system = system;
         log = Logging.getLogger(system, getClass().getName());
-        //===========================================================================
-        // ANSWER
-        //===========================================================================
-        // @todo assign cofeeHouse instance via factory method.
-        // coffeeHouse = createCoffeeHouse();
     }
 
     public static void main(final String[] args) throws Exception {
@@ -79,14 +87,6 @@ public class CoffeeHouseApp implements Terminal {
         commandLoop();
         Await.ready(system.whenTerminated(), Duration.Inf());
     }
-
-    //===========================================================================
-    // ANSWER
-    //===========================================================================
-    // @todo createCoffeeHouse factory method
-    // protected ActorRef createCoffeeHouse() {
-    //     return system.actorOf(CoffeeHouse.props(), "coffee-house");
-    // }
 
     private void commandLoop() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

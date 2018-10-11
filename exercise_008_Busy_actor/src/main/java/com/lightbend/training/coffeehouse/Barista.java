@@ -1,7 +1,3 @@
-/*
- * Copyright © 2014 Typesafe, Inc. All rights reserved.
- */
-
 package com.lightbend.training.coffeehouse;
 
 import akka.actor.AbstractLoggingActor;
@@ -25,19 +21,21 @@ public class Barista extends AbstractLoggingActor {
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().
-                match(PrepareCoffee.class, prepareCoffee -> {
+        return receiveBuilder()
+                .match(PrepareCoffee.class, prepareCoffee -> {
                     //===========================================================================
                     // ANSWER
                     //===========================================================================
                     // @todo Busily prepare coffee for `prepareCoffeeDuration`.
-                    Thread.sleep(this.prepareCoffeeDuration.toMillis()); // Attention: Never block a thread in "real" code!
+                    // Attention: Never block a thread in "real" code!
+                    Thread.sleep(this.prepareCoffeeDuration.toMillis());
                     //===========================================================================
                     // ANSWER
                     //===========================================================================
                     // @todo Respond with `CoffeePrepared(coffee, guest)` to the sender.
                     sender().tell(new CoffeePrepared(prepareCoffee.coffee, prepareCoffee.guest), self());
-                }).build();
+                })
+                .build();
     }
 
     //===========================================================================

@@ -1,12 +1,7 @@
-/**
- * Copyright © 2014, 2015 Typesafe, Inc. All rights reserved. [http://www.typesafe.com]
- */
 package com.lightbend.training.coffeehouse;
 
-import akka.actor.AbstractLoggingActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import scala.concurrent.Await;
@@ -25,7 +20,7 @@ import java.util.regex.Pattern;
 
 public class CoffeeHouseApp implements Terminal {
 
-    public static final Pattern optPattern = Pattern.compile("(\\S+)=(\\S+)");
+    private static final Pattern optPattern = Pattern.compile("(\\S+)=(\\S+)");
 
     private final ActorSystem system;
 
@@ -49,7 +44,7 @@ public class CoffeeHouseApp implements Terminal {
         coffeeHouseApp.run();
     }
 
-    public static Map<String, String> argsToOpts(final List<String> args) {
+    static Map<String, String> argsToOpts(final List<String> args) {
         final Map<String, String> opts = new HashMap<>();
         for (final String arg : args) {
             final Matcher matcher = optPattern.matcher(arg);
@@ -58,24 +53,9 @@ public class CoffeeHouseApp implements Terminal {
         return opts;
     }
 
-    public static void applySystemProperties(final Map<String, String> opts) {
+    static void applySystemProperties(final Map<String, String> opts) {
         opts.forEach((key, value) -> {
             if (key.startsWith("-D")) System.setProperty(key.substring(2), value);
-        });
-    }
-
-    private static Props printerProps(ActorRef coffeeHouse) {
-        return Props.create(AbstractLoggingActor.class, () -> {
-            return new AbstractLoggingActor() {
-                @Override
-                public Receive createReceive() {
-                    return receiveBuilder().matchAny(o -> log().info(o.toString())).build();
-                }
-
-                {
-                    coffeeHouse.tell("Brew Coffee", self());
-                }
-            };
         });
     }
 
@@ -111,12 +91,12 @@ public class CoffeeHouseApp implements Terminal {
         }
     }
 
-    protected void createGuest(int count, Coffee coffee, int maxCoffeeCount) {
+    void createGuest(int count, Coffee coffee, int maxCoffeeCount) {
         for (int i = 0; i < count; i++) {
             coffeeHouse.tell(new CoffeeHouse.CreateGuest(coffee), ActorRef.noSender());
         }
     }
 
-    protected void getStatus() {
+    private void getStatus() {
     }
 }

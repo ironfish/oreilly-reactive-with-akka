@@ -24,17 +24,18 @@ public class Waiter extends AbstractLoggingActor {
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().
-                match(ServeCoffee.class, serveCoffee ->
-                        //===========================================================================
-                        // ANSWER
-                        //===========================================================================
-                        // @todo Change the behavior to reflect using `CoffeeHouse`.
-                        this.coffeeHouse.tell(new CoffeeHouse.ApproveCoffee(serveCoffee.coffee, sender()), self())
-                ).
-                match(Barista.CoffeePrepared.class, coffeePrepared ->
-                        coffeePrepared.guest.tell(new CoffeeServed(coffeePrepared.coffee), self())
-                ).build();
+        return receiveBuilder()
+                .match(ServeCoffee.class, serveCoffee ->
+                    //===========================================================================
+                    // ANSWER
+                    //===========================================================================
+                    // @todo Change the behavior to reflect using `CoffeeHouse`.
+                    this.coffeeHouse.tell(new CoffeeHouse.ApproveCoffee(serveCoffee.coffee, sender()), self())
+                )
+                .match(Barista.CoffeePrepared.class, coffeePrepared ->
+                    coffeePrepared.guest.tell(new CoffeeServed(coffeePrepared.coffee), self())
+                )
+                .build();
     }
 
     public static Props props(ActorRef coffeeHouse) {
@@ -45,7 +46,7 @@ public class Waiter extends AbstractLoggingActor {
 
         public final Coffee coffee;
 
-        public ServeCoffee(final Coffee coffee) {
+        ServeCoffee(final Coffee coffee) {
             checkNotNull(coffee, "Coffee cannot be null");
             this.coffee = coffee;
         }
@@ -78,7 +79,7 @@ public class Waiter extends AbstractLoggingActor {
 
         public final Coffee coffee;
 
-        public CoffeeServed(final Coffee coffee) {
+        CoffeeServed(final Coffee coffee) {
             checkNotNull(coffee, "Coffee cannot be null");
             this.coffee = coffee;
         }

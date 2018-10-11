@@ -24,17 +24,16 @@ public class Waiter extends AbstractLoggingActor {
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().
+        return receiveBuilder()
                 //===========================================================================
                 // ANSWER
                 //===========================================================================
                 // @todo Instead of serving coffee immediately, defer to the `Barista` for preparation.
-                match(ServeCoffee.class, serveCoffee ->
-                        this.barista.tell(new Barista.PrepareCoffee(serveCoffee.coffee, sender()), self())
-                ).
-                match(Barista.CoffeePrepared.class, coffeePrepared ->
-                        coffeePrepared.guest.tell(new CoffeeServed(coffeePrepared.coffee), self())
-                ).build();
+                .match(ServeCoffee.class, serveCoffee ->
+                        this.barista.tell(new Barista.PrepareCoffee(serveCoffee.coffee, sender()), self()))
+                .match(Barista.CoffeePrepared.class, coffeePrepared ->
+                        coffeePrepared.guest.tell(new CoffeeServed(coffeePrepared.coffee), self()))
+                .build();
     }
 
     public static Props props(ActorRef barista) {
@@ -45,7 +44,7 @@ public class Waiter extends AbstractLoggingActor {
 
         public final Coffee coffee;
 
-        public ServeCoffee(final Coffee coffee) {
+        ServeCoffee(final Coffee coffee) {
             checkNotNull(coffee, "Coffee cannot be null");
             this.coffee = coffee;
         }
@@ -78,7 +77,7 @@ public class Waiter extends AbstractLoggingActor {
 
         public final Coffee coffee;
 
-        public CoffeeServed(final Coffee coffee) {
+        CoffeeServed(final Coffee coffee) {
             checkNotNull(coffee, "Coffee cannot be null");
             this.coffee = coffee;
         }

@@ -1,7 +1,3 @@
-/*
- * Copyright © 2014 Typesafe, Inc. All rights reserved.
- */
-
 package com.lightbend.training.coffeehouse;
 
 import akka.actor.AbstractLoggingActor;
@@ -21,14 +17,13 @@ public class Barista extends AbstractLoggingActor {
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().
-                match(PrepareCoffee.class, prepareCoffee -> {
+        return receiveBuilder()
+                .match(PrepareCoffee.class, prepareCoffee -> {
                     Thread.sleep(this.prepareCoffeeDuration.toMillis()); // Attention: Never block a thread in "real" code!
                     sender().tell(new CoffeePrepared(prepareCoffee.coffee, prepareCoffee.guest), self());
-                }).
-                match(Letter.class, this::letterEqualsA, letter -> {
-                    sender().tell(Letter.A, self());
-                }).build();
+                })
+                .match(Letter.class, this::letterEqualsA, letter -> sender().tell(Letter.A, self()))
+                .build();
     }
 
     public static Props props(FiniteDuration prepareCoffeeDuration) {
@@ -39,7 +34,7 @@ public class Barista extends AbstractLoggingActor {
         A, B, C, D;
     }
 
-    public boolean letterEqualsA(Letter letter) {
+    private boolean letterEqualsA(Letter letter) {
         return letter.equals(Letter.A);
     }
 
@@ -91,7 +86,7 @@ public class Barista extends AbstractLoggingActor {
 
         public final ActorRef guest;
 
-        public CoffeePrepared(final Coffee coffee, final ActorRef guest) {
+        CoffeePrepared(final Coffee coffee, final ActorRef guest) {
             checkNotNull(coffee, "Coffee cannot be null");
             checkNotNull(guest, "Guest cannot be null");
             this.coffee = coffee;

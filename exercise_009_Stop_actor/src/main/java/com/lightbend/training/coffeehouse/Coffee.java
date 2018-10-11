@@ -1,6 +1,3 @@
-/**
- * Copyright © 2014, 2015 Typesafe, Inc. All rights reserved. [http://www.typesafe.com]
- */
 package com.lightbend.training.coffeehouse;
 
 import com.google.common.collect.ImmutableSet;
@@ -38,7 +35,7 @@ public interface Coffee extends Serializable {
 
     final class Akkaccino implements Coffee {
 
-        public static final String CODE = "a";
+        static final String CODE = "a";
         private static final long serialVersionUID = 1L;
 
         @Override
@@ -59,7 +56,7 @@ public interface Coffee extends Serializable {
 
     final class CaffeJava implements Coffee {
 
-        public static final String CODE = "c";
+        static final String CODE = "c";
         private static final long serialVersionUID = 1L;
 
         @Override
@@ -80,7 +77,7 @@ public interface Coffee extends Serializable {
 
     final class MochaPlay implements Coffee {
 
-        public static final String CODE = "m";
+        static final String CODE = "m";
         private static final long serialVersionUID = 1L;
 
         @Override

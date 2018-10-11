@@ -4,8 +4,6 @@
 
 package com.lightbend.training.coffeehouse;
 
-import akka.actor.AbstractLoggingActor;
-
 public class CoffeeHouse {
 
     public CoffeeHouse() {
@@ -15,6 +13,8 @@ public class CoffeeHouse {
 //===========================================================================
 // ANSWER
 //===========================================================================
+//import akka.actor.AbstractLoggingActor;
+
 // @todo extend with AbstractLoggingActor
 // public class CoffeeHouse extends AbstractLoggingActor {
 

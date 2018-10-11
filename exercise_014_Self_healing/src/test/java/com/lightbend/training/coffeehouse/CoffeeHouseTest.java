@@ -118,7 +118,7 @@ public class CoffeeHouseTest extends BaseAkkaTestCase {
                         @Override
                         public Receive createReceive() {
                             return receiveBuilder().matchAny(o -> {
-                                //throw new Waiter.FrustratedException(new Coffee.Akkaccino(), system.deadLetters());
+                                throw new Waiter.FrustratedException(new Coffee.Akkaccino(), system.deadLetters());
                             }).build();
                         }
                     }), "waiter");
