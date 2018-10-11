@@ -42,8 +42,8 @@ public class CoffeeHouseApp implements Terminal {
         // ANSWER
         //===========================================================================
         // @todo implement access to anonymous actor
-        // system.actorOf(printerProps(coffeeHouse));
-    }
+//        system.actorOf(printerProps(coffeeHouse));
+}
 
     public static void main(final String[] args) throws Exception {
         final Map<String, String> opts = argsToOpts(Arrays.asList(args));
@@ -70,22 +70,22 @@ public class CoffeeHouseApp implements Terminal {
         });
     }
 
-    //===========================================================================
-    // ANSWER
-    //===========================================================================
-    // @todo implement anonymous actor
-    // private static Props printerProps(ActorRef coffeeHouse) {
-        // return Props.create(AbstractLoggingActor.class, () -> new AbstractLoggingActor() {
-        //     @Override
-        //     public Receive createReceive() {
-        //         return receiveBuilder().matchAny(o -> log().info(o.toString())).build();
-        //     }
-
-        //     {
-        //         coffeeHouse.tell("Brew Coffee", getSelf());
-        //     }
-        // });
-    // }
+//    //===========================================================================
+//    // ANSWER
+//    //===========================================================================
+//    // @todo implement anonymous actor
+//     private static Props printerProps(ActorRef coffeeHouse) {
+//         return Props.create(AbstractLoggingActor.class, () -> new AbstractLoggingActor() {
+//             @Override
+//             public Receive createReceive() {
+//                 return receiveBuilder().matchAny(o -> log().info(o.toString())).build();
+//             }
+//
+//             {
+//                 coffeeHouse.tell("Brew Coffee", getSelf());
+//             }
+//         });
+//     }
 
     private void run() throws IOException, TimeoutException, InterruptedException {
         log.warning(

@@ -1,7 +1,3 @@
-/**
- * Copyright © 2014, 2015 Typesafe, Inc. All rights reserved. [http://www.typesafe.com]
- */
-
 package com.lightbend.training.coffeehouse;
 
 import akka.actor.AbstractLoggingActor;
@@ -59,7 +55,7 @@ public class CoffeeHouse extends AbstractLoggingActor {
                     //===========================================================================
                     // @todo Add `guest` to `guestBook` with a caffeine count of 0.
                     addGuestToBookkeeper(guest);
-                }).
+                })
                 //===========================================================================
                 // ANSWER
                 //===========================================================================
@@ -67,11 +63,11 @@ public class CoffeeHouse extends AbstractLoggingActor {
                 // @todo If less than `caffeineLimit`
                 // @todo Send `PrepareCoffee` to the `Barista`.
                 // @todo Log `Guest {guest} caffeine count incremented.` at `info`.
-                match(ApproveCoffee.class, this::coffeeApproved, approveCoffee -> {
+                .match(ApproveCoffee.class, this::coffeeApproved, approveCoffee -> {
                     barista.forward(new Barista.PrepareCoffee(approveCoffee.coffee, approveCoffee.guest), context());
                     log().info("Guest, {}, caffeine count incremented", approveCoffee.guest.path().name());
-                }).
-                match(ApproveCoffee.class, approveCoffee -> {
+                })
+                .match(ApproveCoffee.class, approveCoffee -> {
                     //===========================================================================
                     // ANSWER
                     //===========================================================================
@@ -82,7 +78,8 @@ public class CoffeeHouse extends AbstractLoggingActor {
                     //===========================================================================
                     // @todo Stop the `Guest`.
                     getContext().stop(approveCoffee.guest);
-                }).build();
+                })
+                .build();
     }
 
     public static Props props(int caffeineLimit) {
@@ -115,17 +112,17 @@ public class CoffeeHouse extends AbstractLoggingActor {
     // ANSWER
     //===========================================================================
     // @todo When creating the `Waiter` pass along `self()` instead of `Barista`.
-    protected ActorRef createWaiter() {
+    private ActorRef createWaiter() {
         return getContext().actorOf(Waiter.props(getSelf()), "waiter");
     }
 
-    protected ActorRef createGuest(Coffee favoriteCoffee) {
+    private ActorRef createGuest(Coffee favoriteCoffee) {
         return getContext().actorOf(Guest.props(waiter, favoriteCoffee, guestFinishCoffeeDuration));
     }
 
     public static final class CreateGuest {
 
-        public final Coffee favoriteCoffee;
+        final Coffee favoriteCoffee;
 
         public CreateGuest(final Coffee favoriteCoffee) {
             checkNotNull(favoriteCoffee, "Favorite coffee cannot be null");

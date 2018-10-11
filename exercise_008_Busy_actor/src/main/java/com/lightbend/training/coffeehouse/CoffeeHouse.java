@@ -1,7 +1,3 @@
-/**
- * Copyright © 2014, 2015 Typesafe, Inc. All rights reserved. [http://www.typesafe.com]
- */
-
 package com.lightbend.training.coffeehouse;
 
 import akka.actor.AbstractLoggingActor;
@@ -45,10 +41,10 @@ public class CoffeeHouse extends AbstractLoggingActor {
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().
-                match(CreateGuest.class, createGuest ->
-                        createGuest(createGuest.favoriteCoffee)
-                ).build();
+        return receiveBuilder()
+                .match(CreateGuest.class, createGuest ->
+                        createGuest(createGuest.favoriteCoffee))
+                .build();
     }
 
     public static Props props() {
@@ -59,23 +55,23 @@ public class CoffeeHouse extends AbstractLoggingActor {
     // ANSWER
     //===========================================================================
     // @todo Use a `createBarista` factory method.
-    protected ActorRef createBarista() {
+    private ActorRef createBarista() {
         return context().actorOf(Barista.props(baristaPrepareCoffeeDuration), "barista");
     }
 
-    protected ActorRef createWaiter() {
+    private ActorRef createWaiter() {
         return context().actorOf(Waiter.props(barista), "waiter");
     }
 
-    protected void createGuest(Coffee favoriteCoffee) {
+    private void createGuest(Coffee favoriteCoffee) {
         context().actorOf(Guest.props(waiter, favoriteCoffee, guestFinishCoffeeDuration));
     }
 
     public static final class CreateGuest {
 
-        public final Coffee favoriteCoffee;
+        final Coffee favoriteCoffee;
 
-        public CreateGuest(final Coffee favoriteCoffee) {
+        CreateGuest(final Coffee favoriteCoffee) {
             checkNotNull(favoriteCoffee, "Favorite coffee cannot be null");
             this.favoriteCoffee = favoriteCoffee;
         }

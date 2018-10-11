@@ -1,7 +1,3 @@
-/**
- * Copyright © 2014, 2015 Typesafe, Inc. All rights reserved. [http://www.typesafe.com]
- */
-
 package com.lightbend.training.coffeehouse;
 
 import akka.actor.AbstractLoggingActor;
@@ -20,10 +16,9 @@ public class CoffeeHouse extends AbstractLoggingActor {
     //===========================================================================
     // @todo For `finishCoffeeDuration`, use a configuration value with key `coffee-house.guest.finish-coffee-duration`.
     // @todo To get the configuration value, use the `getDuration` method on `context().system().settings().config()`.
-    // private final FiniteDuration guestFinishCoffeeDuration =
-    //         Duration.create(
-    //                 context().system().settings().config().getDuration(
-    //                         "coffee-house.guest.finish-coffee-duration", MILLISECONDS), MILLISECONDS);
+    private final FiniteDuration guestFinishCoffeeDuration =
+            Duration.create(context().system().settings().config().getDuration(
+                    "coffee-house.guest.finish-coffee-duration", MILLISECONDS), MILLISECONDS);
 
     private final ActorRef waiter =
             context().actorOf(Waiter.props(), "waiter");
@@ -34,30 +29,28 @@ public class CoffeeHouse extends AbstractLoggingActor {
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().
-                match(CreateGuest.class, createGuest ->
-                        createGuest(createGuest.favoriteCoffee)
-                ).build();
+        return receiveBuilder()
+                .match(CreateGuest.class, createGuest -> createGuest(createGuest.favoriteCoffee))
+                .build();
     }
 
-    public static Props props() {
+    static Props props() {
         return Props.create(CoffeeHouse.class, CoffeeHouse::new);
     }
 
     //===========================================================================
     // ANSWER
     //===========================================================================
-    // todo Adjust the code for creating a new `Guest`.
-    protected void createGuest(Coffee favoriteCoffee) {
-        context().actorOf(Guest.props(waiter, favoriteCoffee));
-        // context().actorOf(Guest.props(waiter, favoriteCoffee, guestFinishCoffeeDuration));
+    private void createGuest(Coffee favoriteCoffee) {
+        // todo Adjust the code for creating a new `Guest`.
+        context().actorOf(Guest.props(waiter, favoriteCoffee, guestFinishCoffeeDuration));
     }
 
     public static final class CreateGuest {
 
-        public final Coffee favoriteCoffee;
+        final Coffee favoriteCoffee;
 
-        public CreateGuest(final Coffee favoriteCoffee) {
+        CreateGuest(final Coffee favoriteCoffee) {
             checkNotNull(favoriteCoffee, "Favorite coffee cannot be null");
             this.favoriteCoffee = favoriteCoffee;
         }

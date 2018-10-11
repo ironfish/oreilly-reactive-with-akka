@@ -1,7 +1,3 @@
-/*
- * Copyright © 2014 Typesafe, Inc. All rights reserved.
- */
-
 package com.lightbend.training.coffeehouse;
 
 import akka.actor.AbstractLoggingActor;
@@ -22,21 +18,22 @@ public class Guest extends AbstractLoggingActor {
     public Guest(ActorRef waiter, Coffee favoriteCoffee, FiniteDuration finishCoffeeDuration) {
         this.waiter = waiter;
         this.favoriteCoffee = favoriteCoffee;
-        this.finishCoffeeDuration = finishCoffeeDuration;orderFavoriteCoffee();
+        this.finishCoffeeDuration = finishCoffeeDuration;
+        orderFavoriteCoffee();
 
     }
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().
-                match(Waiter.CoffeeServed.class, coffeeServed -> {
+        return receiveBuilder()
+                .match(Waiter.CoffeeServed.class, coffeeServed -> {
                     coffeeCount++;
                     log().info("Enjoying my {} yummy {}!", coffeeCount, coffeeServed.coffee);
                     scheduleCoffeeFinished();
-                }).
-                match(CoffeeFinished.class, coffeeFinished ->
-                        orderFavoriteCoffee()
-                ).build();
+                })
+                .match(CoffeeFinished.class, coffeeFinished -> orderFavoriteCoffee()
+                )
+                .build();
     }
 
     public static Props props(final ActorRef waiter, final Coffee favoriteCoffee, FiniteDuration finishCoffeeDuration) {
@@ -63,7 +60,7 @@ public class Guest extends AbstractLoggingActor {
 
     public static final class CoffeeFinished {
 
-        public static final CoffeeFinished Instance =
+        static final CoffeeFinished Instance =
                 new CoffeeFinished();
 
         private CoffeeFinished() {

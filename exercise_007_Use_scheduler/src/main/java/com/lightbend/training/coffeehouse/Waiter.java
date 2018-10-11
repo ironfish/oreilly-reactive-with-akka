@@ -1,7 +1,3 @@
-/*
- * Copyright © 2014 Typesafe, Inc. All rights reserved.
- */
-
 package com.lightbend.training.coffeehouse;
 
 import akka.actor.AbstractLoggingActor;
@@ -11,7 +7,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Waiter extends AbstractLoggingActor {
 
-    public Waiter() {
+    private Waiter() {
     }
 
     @Override
@@ -22,7 +18,7 @@ public class Waiter extends AbstractLoggingActor {
                 ).build();
     }
 
-    public static Props props() {
+    static Props props() {
         return Props.create(Waiter.class, Waiter::new);
     }
 
@@ -30,7 +26,7 @@ public class Waiter extends AbstractLoggingActor {
 
         public final Coffee coffee;
 
-        public ServeCoffee(final Coffee coffee) {
+        ServeCoffee(final Coffee coffee) {
             checkNotNull(coffee, "Coffee cannot be null");
             this.coffee = coffee;
         }

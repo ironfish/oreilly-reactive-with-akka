@@ -1,10 +1,10 @@
-val akkaVer = "2.5.3"
-val assertjVer = "3.8.0"
+val akkaVer = "2.5.17"
+val assertjVer = "3.11.1"
 val junitVer = "0.11"
 val logbackVer = "1.2.3"
-val quavaVer = "22.0"
-val scalaVer = "2.12.2"
-val scalaParsersVer= "1.0.6"
+val quavaVer = "26.0-jre"
+val scalaVer = "2.12.7"
+val scalaParsersVer= "1.1.1"
 
 lazy val compileOptions = Seq(
   "-unchecked",

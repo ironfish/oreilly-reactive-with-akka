@@ -15,17 +15,19 @@ public class Barista extends AbstractLoggingActor {
 
     private final FiniteDuration prepareCoffeeDuration;
 
-    public Barista(FiniteDuration prepareCoffeeDuration) {
+    private Barista(FiniteDuration prepareCoffeeDuration) {
         this.prepareCoffeeDuration = prepareCoffeeDuration;
     }
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().
-                match(PrepareCoffee.class, prepareCoffee -> {
-                    Thread.sleep(this.prepareCoffeeDuration.toMillis()); // Attention: Never block a thread in "real" code!
+        return receiveBuilder()
+                .match(PrepareCoffee.class, prepareCoffee -> {
+                    // Attention: Never block a thread in "real" code!
+                    Thread.sleep(this.prepareCoffeeDuration.toMillis());
                     sender().tell(new CoffeePrepared(prepareCoffee.coffee, prepareCoffee.guest), self());
-                }).build();
+                })
+                .build();
     }
 
     public static Props props(FiniteDuration prepareCoffeeDuration) {
@@ -38,7 +40,7 @@ public class Barista extends AbstractLoggingActor {
 
         public final ActorRef guest;
 
-        public PrepareCoffee(final Coffee coffee, final ActorRef guest) {
+        PrepareCoffee(final Coffee coffee, final ActorRef guest) {
             checkNotNull(coffee, "Coffee cannot be null");
             checkNotNull(guest, "Guest cannot be null");
             this.coffee = coffee;
@@ -80,7 +82,7 @@ public class Barista extends AbstractLoggingActor {
 
         public final ActorRef guest;
 
-        public CoffeePrepared(final Coffee coffee, final ActorRef guest) {
+        CoffeePrepared(final Coffee coffee, final ActorRef guest) {
             checkNotNull(coffee, "Coffee cannot be null");
             checkNotNull(guest, "Guest cannot be null");
             this.coffee = coffee;
